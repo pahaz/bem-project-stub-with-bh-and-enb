@@ -1,5 +1,5 @@
 module.exports = function(config) {
-
+    console.log('my make!');
     config.nodes('*.bundles/*', function(nodeConfig) {
         nodeConfig.addTechs([
             [ require('enb/techs/file-provider'), { target: '?.bemjson.js' } ],
@@ -28,7 +28,7 @@ module.exports = function(config) {
         ]);
     });
 
-    config.nodes('*touch-pad.bundles/*', function(nodeConfig) {
+    /*config.nodes('*touch-pad.bundles/*', function(nodeConfig) {
         nodeConfig.addTechs([
             [ require('enb/techs/levels'), { levels: getTouchPads(config) } ],
             [ require('enb-autoprefixer/techs/css-autoprefixer'), {
@@ -46,7 +46,7 @@ module.exports = function(config) {
                 sourceTarget: '?.noprefix.css'
             }]
         ]);
-    });
+    });*/
 
 };
 
@@ -75,7 +75,6 @@ function getTouchPads(config) {
         { path: 'libs/bem-components/design/touch.blocks', check: false },
         { path: 'libs/bem-components/design/touch-pad.blocks', check: false },
         'common.blocks',
-        'touch.blocks',
         'touch-pad.blocks'
     ].map(function(level) {
         return config.resolvePath(level);
