@@ -2,6 +2,8 @@
     git clone ....
     bower install
     npm install
+    mkdir common.blocks
+    mkdir desktop.blocks
     
     git clone https://github.com/enb-make/enb
     cd enb
