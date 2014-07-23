@@ -1,3 +1,11 @@
+# HowTo #
+
+    git clone https://github.com/pahaz/bem-tests-bh.git bem-project-stub-with-bh-and-enb
+    bower install
+    npm install
+    ./node_modules/.bin/enb make
+
+# old HowTo #
 
     git clone ....
     bower install

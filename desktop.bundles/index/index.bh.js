@@ -35,4 +35,6 @@ dropRequireCache(require, require.resolve("../../libs/bem-core/desktop.blocks/pa
 require("../../libs/bem-core/desktop.blocks/page/page.bh.js")(bh);
 dropRequireCache(require, require.resolve("../../common.blocks/page/page.bh.js"));
 require("../../common.blocks/page/page.bh.js")(bh);
+dropRequireCache(require, require.resolve("../../desktop.blocks/page/page.bh.js"));
+require("../../desktop.blocks/page/page.bh.js")(bh);
 module.exports = bh;
