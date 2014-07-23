@@ -14,5 +14,9 @@
     "enb-roole": "0.2.1",
     "enb-bh": "0.1.1",
     "enb-autoprefixer": "0.1.1"
+  },
+  "scripts": {
+    "test": "bower install && npm install && node_modules/.bin/enb make"
   }
+
 }
