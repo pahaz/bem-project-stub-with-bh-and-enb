@@ -3,17 +3,33 @@ module.exports = function(config) {
     config.nodes('*.bundles/*', function(nodeConfig) {
         nodeConfig.addTechs([
             [ require('enb/techs/file-provider'), { target: '?.bemjson.js' } ],
-            [ require('enb/techs/files') ],
-            [ require('enb/techs/deps') ],
-            [ require('enb/techs/bemdecl-from-bemjson') ],
+            [ require('enb/techs/bemdecl-from-bemjson'), { sourceTarget: '?.bemjson.js', destTarget: "?.bemdecl.js" } ],
+            [ require('enb/techs/bemdecl-from-deps-by-tech'), { sourceTech: 'js', destTech: 'bemhtml', target: "?.bemhtml.bemdecl.js"} ],
+            //[ require('enb-modules/techs/deps-with-modules') ],
+            [ require('enb/techs/deps'), { bemdeclTarget: '?.bemdecl.js', depsTarget: '?.deps-new.js' } ],
+            [ require('enb/techs/deps-old'), { bemdeclTarget: '?.bemdecl.js', depsTarget: '?.deps.js' } ],
+            [ require('enb/techs/files'), {depsTarget:'?.deps.js', filesTarget:'?.files', dirsTarget: '?.dirs'} ],            
             [ require('enb-roole/techs/css-roole'), { target: '?.noprefix.css' } ],
             [ require('enb-bh/techs/bh-server') ],
-            [ require('enb-bh/techs/html-from-bemjson') ]
+            [ require('enb-bh/techs/bh-client') ],
+            [ require('enb-bh/techs/html-from-bemjson') ],
+            [ require('enb/techs/js-includes'), { target: '?.includes.js', sourceSuffixes: ['js', 'vanilla.js', 'browser.js'] } ],
+            [ require('enb/techs/js-expand-includes'), { sourceTarget: '?.includes.js', destTarget: '?.includes.all.js' } ],
+            [ require("enb/techs/js"), { sourceSuffixes: ['js', 'vanilla.js'/*, 'browser.js'*/], target:'?.js', filesTarget:'?.files' } ]
         ]);
-
+        //nodeConfig.addTech(require('enb-diverse-js/techs/vanilla-js'));
+        //nodeConfig.addTech(require('enb-diverse-js/techs/browser-js'));
+        /*nodeConfig.addTech();*/
         nodeConfig.addTargets([
             '?.css',
+            '?.js',
+            '?.includes.all.js',
+            '?.deps-new.js',
+            '?.bemhtml.bemdecl.js',
+            //'?.vanilla.js',
+            //'?.browser.js',
             '?.bh.js',
+            '?.bh.client.js',
             '?.html'
         ]);
     });
@@ -54,10 +70,10 @@ function getDesktops(config) {
     return [
         { path: 'libs/bem-core/common.blocks', check: false },
         { path: 'libs/bem-core/desktop.blocks', check: false },
-        { path: 'libs/bem-components/common.blocks', check: false },
+        /*{ path: 'libs/bem-components/common.blocks', check: false },
         { path: 'libs/bem-components/design/common.blocks', check: false },
         { path: 'libs/bem-components/desktop.blocks', check: false },
-        { path: 'libs/bem-components/design/desktop.blocks', check: false },
+        { path: 'libs/bem-components/design/desktop.blocks', check: false },*/
         'common.blocks',
         'desktop.blocks'
     ].map(function(level) {

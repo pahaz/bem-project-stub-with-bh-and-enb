@@ -21,6 +21,12 @@ bh.setOptions({
 jsAttrName: 'onclick',
 jsAttrScheme: 'js'
 })
+dropRequireCache(require, require.resolve("../../libs/bem-core/common.blocks/page/page.bh.js"));
+require("../../libs/bem-core/common.blocks/page/page.bh.js")(bh);
+dropRequireCache(require, require.resolve("../../libs/bem-core/desktop.blocks/page/page.bh.js"));
+require("../../libs/bem-core/desktop.blocks/page/page.bh.js")(bh);
+dropRequireCache(require, require.resolve("../../desktop.blocks/page/page.bh.js"));
+require("../../desktop.blocks/page/page.bh.js")(bh);
 dropRequireCache(require, require.resolve("../../libs/bem-core/common.blocks/ua/ua.bh.js"));
 require("../../libs/bem-core/common.blocks/ua/ua.bh.js")(bh);
 dropRequireCache(require, require.resolve("../../libs/bem-core/common.blocks/page/__css/page__css.bh.js"));
@@ -29,12 +35,4 @@ dropRequireCache(require, require.resolve("../../libs/bem-core/desktop.blocks/pa
 require("../../libs/bem-core/desktop.blocks/page/__css/page__css.bh.js")(bh);
 dropRequireCache(require, require.resolve("../../libs/bem-core/common.blocks/page/__js/page__js.bh.js"));
 require("../../libs/bem-core/common.blocks/page/__js/page__js.bh.js")(bh);
-dropRequireCache(require, require.resolve("../../libs/bem-core/common.blocks/page/page.bh.js"));
-require("../../libs/bem-core/common.blocks/page/page.bh.js")(bh);
-dropRequireCache(require, require.resolve("../../libs/bem-core/desktop.blocks/page/page.bh.js"));
-require("../../libs/bem-core/desktop.blocks/page/page.bh.js")(bh);
-dropRequireCache(require, require.resolve("../../common.blocks/page/page.bh.js"));
-require("../../common.blocks/page/page.bh.js")(bh);
-dropRequireCache(require, require.resolve("../../desktop.blocks/page/page.bh.js"));
-require("../../desktop.blocks/page/page.bh.js")(bh);
 module.exports = bh;
