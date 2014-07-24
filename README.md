@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/pahaz/bem-project-stub-with-bh-and-enb.svg?branch=master)](https://travis-ci.org/pahaz/bem-project-stub-with-bh-and-enb)
+
 # HowTo #
 
     git clone https://github.com/pahaz/bem-tests-bh.git project-stub
