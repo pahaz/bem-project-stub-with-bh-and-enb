@@ -24,8 +24,6 @@ modules.define(
         functions,
         events) {
 
-        console.log('i-bem!');
-        
 var undef,
 
     MOD_DELIM = INTERNAL.MOD_DELIM,
@@ -81,9 +79,7 @@ function modFnsToProps(prefix, modFns, props, elemName) {
                 } else {
                     for(modVal in modFn) {
                         if(modFn.hasOwnProperty(modVal)) {
-                            var t = buildModFnName(prefix, modName, modVal, elemName);
-                            console.log('buildModFnName', t);
-                            props[t] = modFn[modVal];
+                            props[buildModFnName(prefix, modName, modVal, elemName)] = modFn[modVal];
                         }
                     }
                 }
@@ -117,7 +113,6 @@ function convertModHandlersToMethods(props) {
     }
 
     if(props.onSetMod) {
-        console.log('convertModHandlersToMethods() props.onSetMod'); 
         modFnsToProps('after', props.onSetMod, props);
         delete props.onSetMod;
     }
@@ -157,7 +152,6 @@ var BEM = inherit(events.Emitter, /** @lends BEM.prototype */ {
      * @param {Boolean} [initImmediately=true]
      */
     __constructor : function(mods, params, initImmediately) {
-        console.log('__constructor', mods, params, initImmediately);
         /**
          * Cache of block modifiers
          * @member {Object}
@@ -189,7 +183,6 @@ var BEM = inherit(events.Emitter, /** @lends BEM.prototype */ {
      * @private
      */
     _init : function() {
-        console.log('!! inited !!');
         return this.setMod('js', 'inited');
     },
 
@@ -588,7 +581,6 @@ var BEM = inherit(events.Emitter, /** @lends BEM.prototype */ {
      * @returns {Function}
      */
     decl : function(decl, props, staticProps) {
-        console.log('BEM.decl()', decl);
         // string as block
         typeof decl === 'string' && (decl = { block : decl });
         // inherit from itself
@@ -613,7 +605,7 @@ var BEM = inherit(events.Emitter, /** @lends BEM.prototype */ {
         }
 
         convertModHandlersToMethods(props || (props = {}));
-        
+
         if(decl.modName) {
             var checkMod = buildCheckMod(decl.modName, decl.modVal);
             objects.each(props, function(prop, name) {
@@ -656,7 +648,7 @@ var BEM = inherit(events.Emitter, /** @lends BEM.prototype */ {
             // makes a new "live" if the old one was already executed
             (block = inherit.self(baseBlocks, props, staticProps))._processLive(true) :
             (block = blocks[decl.block] = inherit(baseBlocks, props, staticProps))._name = decl.block;
-        console.log('BEM.decl() baseBlock.getName()', baseBlock.getName());
+
         return block;
     },
 
@@ -682,7 +674,6 @@ var BEM = inherit(events.Emitter, /** @lends BEM.prototype */ {
      * @returns {BEM}
      */
     create : function(block, params) {
-        console.log('BEM.create()');
         typeof block === 'string' && (block = { block : block });
 
         return new blocks[block.block](block.mods, params);
@@ -1012,17 +1003,14 @@ function inherit() {
         staticProps = args[hasBase? 2 : 1],
         res = props.__constructor || (hasBase && base.prototype.__constructor)?
             function() {
-                console.log('!!! base.prototype.__constructor() !!!');
                 return this.__constructor.apply(this, arguments);
-            } : 
+            } :
             hasBase?
                 function() {
                     return base.apply(this, arguments);
                 } :
                 function() {};
-    //console.log('inherit()', args, withMixins, hasBase, base, props, staticProps, res);
-    //console.log('inh () ', props.__constructor?'yes':'no', props.__constructor);
-    //console.log('inh res = ', res);
+
     if(!hasBase) {
         res.prototype = props;
         res.prototype.__self = res.prototype.constructor = res;
@@ -1316,7 +1304,6 @@ modules.define(
     ['identify', 'inherit', 'functions'],
     function(provide, identify, inherit, functions) {
 
-    console.log('events!');
 var undef,
     storageExpando = '__' + (+new Date) + 'storage',
     getFnId = function(fn, ctx) {
@@ -1794,7 +1781,6 @@ var DOM = BEM.decl('i-bem__dom',/** @lends BEMDOM.prototype */{
      * @param {Boolean} [initImmediately=true]
      */
     __constructor : function(domElem, params, initImmediately) {
-        console.log('i-bem__dom.__constructor!');
         /**
          * DOM elements of block
          * @member {jQuery}
