@@ -4,7 +4,6 @@
 
     git clone https://github.com/pahaz/bem-tests-bh.git project-stub
     cd project-stub
-    bower install
     npm install
     ./node_modules/.bin/enb make
 
