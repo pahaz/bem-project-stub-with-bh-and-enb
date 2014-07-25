@@ -9,7 +9,8 @@
   "dependencies": {},
   "devDependencies": {
     "enb": "0.13.4",
-    "bower": "1.3.3",
+    "bower": "~1.3.5",
+    "bower-npm-install": "~0.5.4",    
     "roole": "0.9.0",
     "enb-roole": "0.2.1",
     "enb-bh": "0.1.1",
@@ -17,7 +18,9 @@
     "ym": "0.1.0"
   },
   "scripts": {
-    "test": "bower install && npm install && node_modules/.bin/enb make"
+    "test": "bower install && npm install && node_modules/.bin/enb make",
+    "postinstall": "bower-npm-install --non-interactive",
+    "deps": "bower-npm-install --non-interactive"
   }
 
 }
