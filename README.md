@@ -1,3 +1,13 @@
+# DEPRICATED #
+
+Please use this:
+
+    git clone https://github.com/bem/bem-core.git -b v3
+    cd bem-core
+    npm install
+    ./node_modules/.bin/enb make
+
+
 [![Build Status](https://travis-ci.org/pahaz/bem-project-stub-with-bh-and-enb.svg?branch=master)](https://travis-ci.org/pahaz/bem-project-stub-with-bh-and-enb)
 
 # HowTo #
